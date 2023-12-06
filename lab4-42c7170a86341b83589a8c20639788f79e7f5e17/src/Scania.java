@@ -2,14 +2,14 @@ import java.awt.*;
 
 public class Scania extends Vehicles{
 
-    private double flakVinkel = 0;
+    private double bedAngle = 0;
     public Scania() {
         super(12,2,"Scania",150, Color.white);
     }
 
-    public void changeFlak(double amount) {
+    public void changeBedAngle(double amount) {
         if (amount >= 0 && amount <= 70 && getCurrentSpeed() == 0) {
-            flakVinkel = amount;
+            bedAngle = amount;
         }
         else {
             System.out.println("invalid input");
@@ -18,14 +18,14 @@ public class Scania extends Vehicles{
 
     @Override
     public void gas(double amount) {
-        if (getflakVinkel() == 0) {
+        if (getCurrentBedAngle() == 0) {
             super.gas(amount);
         }
 
     }
 
-    public double getflakVinkel() {
-        return flakVinkel;
+    public double getCurrentBedAngle() {
+        return bedAngle;
     }
 
     public double speedFactor(){
