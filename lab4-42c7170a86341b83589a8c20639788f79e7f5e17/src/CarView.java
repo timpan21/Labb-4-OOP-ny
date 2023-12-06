@@ -5,13 +5,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * This class represents the full view of the MVC pattern of your car simulator.
- * It initializes with being center on the screen and attaching it's controller in it's state.
- * It communicates with the Controller by calling methods of it when an action fires of in
- * each of it's components.
- * TODO: Write more actionListeners and wire the rest of the buttons
- **/
 
 public class CarView extends JFrame implements SignalObserver{
     private static final int X = 800;
@@ -20,7 +13,7 @@ public class CarView extends JFrame implements SignalObserver{
     // The controller member
     CarController carC;
 
-    DrawPanel drawPanel = new DrawPanel(X,Y-240);
+    DrawPanel drawPanel;
     updatePanel updateState = new updatePanel();
     JPanel controlPanel = new JPanel();
 
@@ -44,19 +37,18 @@ public class CarView extends JFrame implements SignalObserver{
     // Constructor
     public CarView(String framename, CarController cc){
         this.carC = cc;
-
         initComponents(framename);
     }
 
-    // Sets everything in place and fits everything
-    // TODO: Take a good look and make sure you understand how these methods and components work
     private void initComponents(String title) {
 
         this.setTitle(title);
         this.setPreferredSize(new Dimension(X,Y));
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
-        this.add(updateState);
+        this.drawPanel = new DrawPanel(X, Y -240, carC);
         this.add(drawPanel);
+        this.add(updateState);
+
 
 
 
@@ -103,9 +95,15 @@ public class CarView extends JFrame implements SignalObserver{
         stopButton.setPreferredSize(new Dimension(X/5-15,200));
         this.add(stopButton);
 
-        // This actionListener is for the gas button only
-        // TODO: Create more for each component as necessary
-        addActionListenersToAllButtons();
+        startButton.addActionListener(carC.createStartListener());
+        gasButton.addActionListener(carC.createGasListener());
+        stopButton.addActionListener(carC.createStopListener());
+        turboOffButton.addActionListener(carC.createTurboOffListener());
+        turboOnButton.addActionListener(carC.createTurboOnListener());
+        liftBedButton.addActionListener(carC.createLiftBedListener());
+        lowerBedButton.addActionListener(carC.createLowerBedListener());
+        brakeButton.addActionListener(carC.createBrakeListener());
+
 
         // Make the frame pack all it's components by respecting the sizes if possible.
         this.pack();
@@ -120,67 +118,10 @@ public class CarView extends JFrame implements SignalObserver{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    private void addActionListenersToAllButtons() {
-        startButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carC.startEngine();
-            }
-        });
-        gasButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carC.gas(gasAmount);
-            }
-        });
-
-        stopButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carC.stopEngine();
-            }
-        });
-
-        turboOffButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carC.TurboOff();
-            }
-        });
-
-        turboOnButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carC.TurboOn();
-            }
-        });
-
-        liftBedButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carC.changeBed(70);
-            }
-        });
-        lowerBedButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carC.changeBed(0);
-            }
-        });
-        brakeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carC.brake(gasAmount);
-            }
-        });
-    }
-
 
     @Override
     public void actOnSignal(Point position, Vehicles car) {
-
         drawPanel.updatepanel.moveCar(position,car);
-
         drawPanel.repaint();
 
     }

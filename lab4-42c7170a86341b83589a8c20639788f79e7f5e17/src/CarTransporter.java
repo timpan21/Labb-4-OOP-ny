@@ -3,8 +3,6 @@ import java.util.LinkedList;
 
 public class CarTransporter <T extends isCar> extends Vehicles{
 
-
-
     private boolean rampState = true;
     private final int capacity;
 
@@ -115,7 +113,11 @@ public class CarTransporter <T extends isCar> extends Vehicles{
         return rampState;
     }
 
+    public static void main(String[] args) {
+        CarTransporter test = new CarTransporter(2);
+        test.lowerRamp();
 
+    }
 
 }
 
