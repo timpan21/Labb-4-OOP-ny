@@ -7,9 +7,9 @@ class CarTest {
     Saab95 saab;
     Volvo240 volvo;
     Scania scania;
-    Verkstad<Saab95> saabVerkstad;
-    Verkstad<Volvo240> volvoVerkstad;
-    Verkstad<isCar> mixadVerkstad;
+    Workshop<Saab95> saabWorkshop;
+    Workshop<Volvo240> volvoWorkshop;
+    Workshop<isCar> mixadWorkshop;
 
 
     @BeforeEach
@@ -18,14 +18,14 @@ class CarTest {
         volvo = new Volvo240();
         scania = new Scania();
 
-        saabVerkstad = new Verkstad<>();
-        saabVerkstad.setMaxAntalBilar(4);
+        saabWorkshop = new Workshop<>();
+        saabWorkshop.setMaxCarAmount(4);
 
-        volvoVerkstad = new Verkstad<>();
-        volvoVerkstad.setMaxAntalBilar(6);
+        volvoWorkshop = new Workshop<>();
+        volvoWorkshop.setMaxCarAmount(6);
 
-        mixadVerkstad = new Verkstad<>();
-        mixadVerkstad.setMaxAntalBilar(10);
+        mixadWorkshop = new Workshop<>();
+        mixadWorkshop.setMaxCarAmount(10);
 
 
     }
@@ -198,35 +198,35 @@ class CarTest {
 
     @Test
     void testchangeflakVinkel() {
-        scania.changeFlak(50);
-        assertEquals(50, scania.getflakVinkel());
+        scania.changeBedAngle(50);
+        assertEquals(50, scania.getCurrentBedAngle());
 
-        scania.changeFlak(70);
-        assertEquals(70, scania.getflakVinkel());
+        scania.changeBedAngle(70);
+        assertEquals(70, scania.getCurrentBedAngle());
     }
 
     @Test
     void testTaUtOchInBilar() {
-        saabVerkstad.taInBil(saab);
-        saabVerkstad.taInBil(saab);
-        saabVerkstad.taUtBil(saab);
-        assertEquals(1, saabVerkstad.getBilarIVerkstad().size());
+        saabWorkshop.addCar(saab);
+        saabWorkshop.addCar(saab);
+        saabWorkshop.dispatchCar(saab);
+        assertEquals(1, saabWorkshop.getAmountOfCarsInWorkshop().size());
     }
 
     @Test
     void testGetBilarIVerkstad() {
-        volvoVerkstad.taInBil(volvo);
-        assertTrue(volvoVerkstad.getBilarIVerkstad().contains(volvo));
+        volvoWorkshop.addCar(volvo);
+        assertTrue(volvoWorkshop.getAmountOfCarsInWorkshop().contains(volvo));
 
-        mixadVerkstad.taInBil(saab);
-        mixadVerkstad.taInBil(volvo);
-        assertEquals(2, mixadVerkstad.getBilarIVerkstad().size());
+        mixadWorkshop.addCar(saab);
+        mixadWorkshop.addCar(volvo);
+        assertEquals(2, mixadWorkshop.getAmountOfCarsInWorkshop().size());
     }
 
     @Test
     void testGetMaxAntalBilar() {
         int expectedMaxAntalBilar = 4;
-        assertEquals(expectedMaxAntalBilar, saabVerkstad.getMaxAntalBilar());
+        assertEquals(expectedMaxAntalBilar, saabWorkshop.getMaxCarAmount());
 
     }
 }

@@ -135,7 +135,7 @@ public class CarController {
     void changeBed(int amount) {
         for(Vehicles car : vehicles) {
             if (car instanceof Scania) {
-            ((Scania) car).changeFlak(amount);}
+            ((Scania) car).changeBedAngle(amount);}
         }
     }
     void brake(double amount) {
