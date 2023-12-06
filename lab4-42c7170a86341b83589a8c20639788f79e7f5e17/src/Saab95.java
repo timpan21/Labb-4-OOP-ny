@@ -30,14 +30,7 @@ public class Saab95 extends Vehicles implements isCar {
         return getEnginePower() * 0.1 * turbo;
     }
 
-    public static void main(String[] args) {
-        Vehicles x = new Saab95();
-        Saab95 y = new Saab95();
 
-
-
-
-    }
 
 
 }

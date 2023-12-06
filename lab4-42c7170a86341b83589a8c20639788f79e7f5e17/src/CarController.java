@@ -65,30 +65,35 @@ public class CarController {
                 source.notifyObsevers(car.getPosition(),car);
                 int x = (int) Math.round(car.getPosition().getX());
                 int y = (int) Math.round(car.getPosition().getY());
-                //if (x <= frame.getSize().width)
 
-                if (ifAboutToHitWall(car, x)) {
-                    if (x >= 684) {
-                        car.setPosition(new Point(684,y));
-                        x = 684;
 
-                    }
+                ifAboutToHitWallStopEngineAndReverseDirection(car, x, y);
 
-                    else {car.setPosition(new Point(0,y));
-                        x = 0;
-                    }
-                    car.stopEngine();
-                    car.turnLeft();
-                    car.turnLeft();
-                    car.startEngine();
 
-                }
-
-                // repaint() calls the paintComponent method of the panel
 
 
             }
 
+
+        }
+
+        private static void ifAboutToHitWallStopEngineAndReverseDirection(Vehicles car, int x, int y) {
+            if (ifAboutToHitWall(car, x)) {
+                if (x >= 684) {
+                    car.setPosition(new Point(684, y));
+                    x = 682;
+
+                }
+
+                else {
+                    car.setPosition(new Point(0, y));
+                    x = 0;
+                }
+                car.stopEngine();
+                car.turnAround();
+                car.startEngine();
+
+            }
         }
 
         private static boolean ifAboutToHitWall(Vehicles car, int x) {

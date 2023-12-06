@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class DrawPanel extends JPanel{
 
-    // Just a single image, TODO: Generalize
+
 
 
     BufferedImage volvoImage;
@@ -54,9 +54,7 @@ public class DrawPanel extends JPanel{
 
             // Rememember to rightclick src New -> Package -> name: pics -> MOVE *.jpg to pics.
             // if you are starting in IntelliJ.
-            volvoImage = ImageIO.read(Objects.requireNonNull(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg")));
-            scaniaImage = ImageIO.read(Objects.requireNonNull(DrawPanel.class.getResourceAsStream("pics/Scania.jpg")));
-            saabImage = ImageIO.read(Objects.requireNonNull(DrawPanel.class.getResourceAsStream("pics/Saab95.jpg")));
+            ReadImages();
 
         } catch (IOException ex)
         {
@@ -64,6 +62,12 @@ public class DrawPanel extends JPanel{
         }
 
 
+    }
+
+    private void ReadImages() throws IOException {
+        volvoImage = ImageIO.read(Objects.requireNonNull(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg")));
+        scaniaImage = ImageIO.read(Objects.requireNonNull(DrawPanel.class.getResourceAsStream("pics/Scania.jpg")));
+        saabImage = ImageIO.read(Objects.requireNonNull(DrawPanel.class.getResourceAsStream("pics/Saab95.jpg")));
     }
 
     // This method is called each time the panel updates/refreshes/repaints itself
