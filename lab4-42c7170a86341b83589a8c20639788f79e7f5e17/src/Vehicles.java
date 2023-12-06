@@ -125,10 +125,6 @@ public abstract class Vehicles implements Movable{
         }
     }
 
-    public void turnAround() {
-        //direction = direction*-1;
-        direction += 180;
-    }
 
 }
 
