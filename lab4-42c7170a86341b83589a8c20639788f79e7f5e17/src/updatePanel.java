@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageInputStream;
 import javax.swing.*;
 
-public class updatePanel extends JPanel{
+public class updatePanel {
     // To keep track of a single cars position
 
     Point volvoPoint = new Point();
