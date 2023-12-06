@@ -8,7 +8,7 @@ public class CarController {
 
     private final int delay = 50;
 
-    private Timer timer = new Timer(delay, new TimerListener());
+    Timer timer = new Timer(delay, new TimerListener());
 
     CarView frame;
 
@@ -60,7 +60,6 @@ public class CarController {
         private static boolean ifAboutToHitWall(Vehicles car, int x) {
             return (x <= 0 && (car.getDirection() == 180 || car.getDirection() == -180)) || (x >= 684 && (int) car.getDirection() == 0);
         }
-
 
     }
 
@@ -143,17 +142,7 @@ public class CarController {
         return e -> brake(frame.gasAmount);
     }
 
-    public static void main(String[] args) {
-        CarController cc = new CarController();
 
-        cc.vehicles.add(new Volvo240());
-        cc.vehicles.add(new Saab95());
-        cc.vehicles.add(new Scania());
-
-        // Start the timer
-        cc.timer.start();
-
-    }
 
 }
 

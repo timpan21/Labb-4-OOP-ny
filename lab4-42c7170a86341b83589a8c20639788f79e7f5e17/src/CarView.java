@@ -47,7 +47,7 @@ public class CarView extends JFrame implements SignalObserver{
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
         this.drawPanel = new DrawPanel(X, Y -240, carC);
         this.add(drawPanel);
-        this.add(updateState);
+
 
 
 

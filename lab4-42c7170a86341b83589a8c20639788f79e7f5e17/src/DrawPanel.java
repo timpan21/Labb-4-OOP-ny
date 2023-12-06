@@ -4,12 +4,10 @@
     import java.awt.image.BufferedImage;
     import java.io.File;
     import java.io.IOException;
-    import java.util.LinkedList;
-    import java.util.Objects;
+    import java.util.*;
     import javax.imageio.ImageIO;
     import javax.imageio.stream.ImageInputStream;
     import javax.swing.*;
-    import java.util.ArrayList;
 
     // This panel represent the animated part of the view with the car images.
 
@@ -30,21 +28,16 @@
 
 
 
-
-
-
-
-
-
-
-
-
+        private final Map<Class<? extends Vehicles>, BufferedImage> test = new HashMap<>();
 
 
 
         // Initializes the panel and reads the images
         public DrawPanel(int x, int y, CarController carController) {
             this.carController = carController;
+
+
+
             this.setDoubleBuffered(true);
             this.setPreferredSize(new Dimension(x, y));
             this.setBackground(Color.green);
@@ -69,14 +62,8 @@
         }
 
         private BufferedImage getImageForVehicle(Vehicles car) {
-            if (car instanceof Saab95) {
-                return saabImage;
-            } else if (car instanceof Volvo240) {
-                return volvoImage;
-            } else if (car instanceof Scania) {
-                return scaniaImage;
-            }
-            return null;
+
+            return test.get(car.getClass());
         }
 
 
@@ -85,12 +72,17 @@
 
         @Override
         protected void paintComponent(Graphics g) {
+            test.put(Saab95.class, saabImage);
+            test.put(Volvo240.class, volvoImage);
+            test.put(Scania.class, scaniaImage);
             super.paintComponent(g);
             int deltaY = 100; // Vertical offset between cars
             int yOffset = 0;  // Starting offset
 
             for (Vehicles car : carController.getVehicles()) {
+
                 BufferedImage image = getImageForVehicle(car);
+
                 int x = car.getPosition().x;
                 int y = car.getPosition().y + yOffset; // Apply the offset
 
@@ -100,5 +92,6 @@
             }
         }
     }
+
 
 
