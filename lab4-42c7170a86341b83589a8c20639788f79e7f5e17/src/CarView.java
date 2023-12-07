@@ -21,6 +21,8 @@ public class CarView extends JFrame implements SignalObserver{
     JSpinner gasSpinner = new JSpinner();
     int gasAmount = 0;
     JLabel gasLabel = new JLabel("Amount of gas");
+    JButton addCarButton = new JButton("Add Car");
+    JButton removeCarButton = new JButton("Remove Car");
 
     JButton gasButton = new JButton("Gas");
     JButton brakeButton = new JButton("Brake");
@@ -47,11 +49,6 @@ public class CarView extends JFrame implements SignalObserver{
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
         this.drawPanel = new DrawPanel(X, Y -240, carC);
         this.add(drawPanel);
-        this.add(updateState);
-
-
-
-
 
         SpinnerModel spinnerModel =
                 new SpinnerNumberModel(0, //initial value
@@ -95,6 +92,16 @@ public class CarView extends JFrame implements SignalObserver{
         stopButton.setPreferredSize(new Dimension(X/5-15,200));
         this.add(stopButton);
 
+        addCarButton.setBackground(Color.orange);
+        addCarButton.setBackground(Color.black);
+        addCarButton.setPreferredSize(new Dimension(X/5-15,200));
+        this.add(addCarButton);
+
+        removeCarButton.setBackground(Color.red);
+        removeCarButton.setBackground(Color.black);
+        removeCarButton.setPreferredSize(new Dimension(X/5-15,200));
+        this.add(removeCarButton);
+
         startButton.addActionListener(carC.createStartListener());
         gasButton.addActionListener(carC.createGasListener());
         stopButton.addActionListener(carC.createStopListener());
@@ -103,6 +110,8 @@ public class CarView extends JFrame implements SignalObserver{
         liftBedButton.addActionListener(carC.createLiftBedListener());
         lowerBedButton.addActionListener(carC.createLowerBedListener());
         brakeButton.addActionListener(carC.createBrakeListener());
+        addCarButton.addActionListener(carC.createAddCarButton());
+        removeCarButton.addActionListener(carC.createRemoveCarButton());
 
 
         // Make the frame pack all it's components by respecting the sizes if possible.

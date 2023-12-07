@@ -10,6 +10,8 @@ public class CarController {
 
     private Timer timer = new Timer(delay, new TimerListener());
 
+    private final int vehicleLimit = 10;
+
     CarView frame;
 
     public ArrayList<Vehicles> vehicles = new ArrayList<>();
@@ -110,6 +112,18 @@ public class CarController {
             car.brake(amount/100);
         }
     }
+    void addCar(){
+        if (vehicles.size() < vehicleLimit) {
+            Vehicles createCar = Vehicles.createNewCar(car);
+            vehicles.add(newCar);
+        }
+    }
+
+    void removeCar(){
+        if (!vehicles.isEmpty()){
+            vehicles.remove(vehicles.size() - -1);
+        }
+    }
 
     public ActionListener createGasListener(){
         return e -> gas (frame.gasAmount);
@@ -142,6 +156,10 @@ public class CarController {
     public ActionListener createBrakeListener(){
         return e -> brake(frame.gasAmount);
     }
+
+    public ActionListener createAddCarButton(){return e -> addCar();}
+
+    public ActionListener createRemoveCarButton(){return e -> removeCar();}
 
     public static void main(String[] args) {
         CarController cc = new CarController();

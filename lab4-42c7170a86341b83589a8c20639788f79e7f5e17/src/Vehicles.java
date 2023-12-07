@@ -14,14 +14,6 @@ public abstract class Vehicles implements Movable{
     private Point position;
     private int direction;
 
-
-
-
-
-
-
-
-
     public Vehicles(int length, int nrDoors, String modelName, double enginePower, Color color) {
         this.length = length;
         this.nrDoors = nrDoors;
@@ -43,9 +35,6 @@ public abstract class Vehicles implements Movable{
         double newX = position.getX() + Math.cos(Math.toRadians(direction)) * getCurrentSpeed();
         double newY = position.getY() + Math.sin(Math.toRadians(direction)) * getCurrentSpeed();
         position.setLocation(newX, newY);
-
-
-
 
 
     }

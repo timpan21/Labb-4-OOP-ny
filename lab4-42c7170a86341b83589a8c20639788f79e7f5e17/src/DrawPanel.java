@@ -26,22 +26,6 @@
         updatePanel updatepanel = new updatePanel();
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         // Initializes the panel and reads the images
         public DrawPanel(int x, int y, CarController carController) {
             this.carController = carController;
@@ -50,12 +34,6 @@
             this.setBackground(Color.green);
             // Print an error message in case file is not found with a try/catch block
             try {
-                // You can remove the "pics" part if running outside of IntelliJ and
-                // everything is in the same main folder.
-                // volvoImage = ImageIO.read(new File("Volvo240.jpg"));
-
-                // Rememember to rightclick src New -> Package -> name: pics -> MOVE *.jpg to pics.
-                // if you are starting in IntelliJ.
                 volvoImage = ImageIO.read(Objects.requireNonNull(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg")));
                 scaniaImage = ImageIO.read(Objects.requireNonNull(DrawPanel.class.getResourceAsStream("pics/Scania.jpg")));
                 saabImage = ImageIO.read(Objects.requireNonNull(DrawPanel.class.getResourceAsStream("pics/Saab95.jpg")));
