@@ -8,7 +8,9 @@ public class CarController {
 
     private final int delay = 50;
 
-    Timer timer = new Timer(delay, new TimerListener());
+    private Timer timer = new Timer(delay, new TimerListener());
+
+    private final int vehicleLimit = 10;
 
     CarView frame;
 
@@ -61,6 +63,7 @@ public class CarController {
             return (x <= 0 && (car.getDirection() == 180 || car.getDirection() == -180)) || (x >= 684 && (int) car.getDirection() == 0);
         }
 
+
     }
 
     // Calls the gas method for each car once
@@ -109,6 +112,18 @@ public class CarController {
             car.brake(amount/100);
         }
     }
+    void addCar(){
+        if (vehicles.size() < vehicleLimit) {
+            Vehicles createCar = Vehicles.createNewCar(car);
+            vehicles.add(newCar);
+        }
+    }
+
+    void removeCar(){
+        if (!vehicles.isEmpty()){
+            vehicles.remove(vehicles.size() - -1);
+        }
+    }
 
     public ActionListener createGasListener(){
         return e -> gas (frame.gasAmount);
@@ -142,7 +157,20 @@ public class CarController {
         return e -> brake(frame.gasAmount);
     }
 
+    public ActionListener createAddCarButton(){return e -> addCar();}
 
+    public ActionListener createRemoveCarButton(){return e -> removeCar();}
+
+    public static void main(String[] args) {
+        CarController cc = new CarController();
+
+        cc.vehicles.add(new Volvo240());
+        cc.vehicles.add(new Saab95());
+        cc.vehicles.add(new Scania());
+
+        // Start the timer
+        cc.timer.start();
+
+    }
 
 }
-
