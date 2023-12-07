@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Volvo240 extends Vehicles implements isCar{
+public class Volvo240 extends Vehicles implements isCar,CreateVehicles{
     public static final double TRIM_FACTOR = 1.25;
 
     public Volvo240() {
@@ -12,5 +12,8 @@ public class Volvo240 extends Vehicles implements isCar{
     }
 
 
-
+    @Override
+    public void build() {
+        new Volvo240();
+    }
 }

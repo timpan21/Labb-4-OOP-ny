@@ -12,7 +12,7 @@ public class CarController {
 
     CarView frame;
 
-    public ArrayList<Vehicles> vehicles = new ArrayList<>();
+
     EventSource source;
 
 
@@ -23,13 +23,13 @@ public class CarController {
     }
 
     public ArrayList<Vehicles> getVehicles() {
-        return vehicles;
+        return Vehicles.cars;
     }
 
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
 
-            for (Vehicles car : vehicles) {
+            for (Vehicles car : Vehicles.cars) {
                 car.move();
                 source.notifyObsevers(car.getPosition(),car);
                 int x = (int) Math.round(car.getPosition().getX());
@@ -66,46 +66,46 @@ public class CarController {
     // Calls the gas method for each car once
     void gas(int amount) {
         double gas = ((double) amount) / 100;
-        for (Vehicles car : vehicles
+        for (Vehicles car : Vehicles.cars
                 ) {
             car.gas(gas);
         }
     }
     void startEngine() {
 
-        for (Vehicles car : vehicles) {
+        for (Vehicles car : Vehicles.cars) {
             car.startEngine();
         }
     }
 
     void stopEngine() {
-        for (Vehicles car : vehicles) {
+        for (Vehicles car : Vehicles.cars) {
             car.stopEngine();
         }
     }
     void TurboOn() {
-        for(Vehicles car : vehicles) {
+        for(Vehicles car : Vehicles.cars) {
             if (car instanceof Saab95) {
                  ((Saab95) car).setTurboOn();
             }
         }
     }
     void TurboOff() {
-        for(Vehicles car : vehicles) {
+        for(Vehicles car : Vehicles.cars) {
             if (car instanceof Saab95) {
                 ((Saab95) car).setTurboOff();
             }
         }
     }
     void changeBed(int amount) {
-        for(Vehicles car : vehicles) {
+        for(Vehicles car : Vehicles.cars) {
             if (car instanceof Scania) {
             ((Scania) car).changeBedAngle(amount);}
         }
     }
     void brake(double amount) {
 
-        for (Vehicles car : vehicles) {
+        for (Vehicles car : Vehicles.cars) {
             car.brake(amount/100);
         }
     }

@@ -1,12 +1,15 @@
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class Saab95 extends Vehicles implements isCar {
+public class Saab95 extends Vehicles implements isCar, CreateVehicles {
     private boolean turboOn = false;
 
 
     public Saab95() {
         super(2,2,"Saab95",125,Color.red);
+
+
     }
 
     public void setTurboOn() {
@@ -31,12 +34,18 @@ public class Saab95 extends Vehicles implements isCar {
     }
 
     public static void main(String[] args) {
-        Vehicles x = new Saab95();
-        Saab95 y = new Saab95();
 
 
 
 
+
+    }
+
+
+    @Override
+    public void build() {
+
+        new Saab95();
     }
 
 

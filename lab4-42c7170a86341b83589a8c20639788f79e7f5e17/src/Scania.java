@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Scania extends Vehicles{
+public class Scania extends Vehicles implements CreateVehicles{
 
     private double bedAngle = 0;
     public Scania() {
@@ -33,5 +33,8 @@ public class Scania extends Vehicles{
     }
 
 
-
+    @Override
+    public void build() {
+        new Scania();
+    }
 }
