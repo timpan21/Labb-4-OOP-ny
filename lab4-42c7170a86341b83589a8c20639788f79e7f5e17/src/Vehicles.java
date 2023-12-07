@@ -14,7 +14,7 @@ public abstract class Vehicles implements Movable{
     private Point position;
     private int direction;
 
-
+    public static ArrayList<Vehicles> cars = new ArrayList<>();
 
 
 
@@ -31,6 +31,7 @@ public abstract class Vehicles implements Movable{
         this.position = new Point(0, 0);
         this.direction = 0;
         stopEngine();
+        cars.add(this);
     }
 
     public abstract double speedFactor();
@@ -118,7 +119,9 @@ public abstract class Vehicles implements Movable{
             }
         }
     }
-
+    public ArrayList<Vehicles> getCars() {
+        return cars;
+    }
     public void brake(double amount){
         if (amount >= 0 && amount <= 1 && currentSpeed - speedFactor()*amount >= 0) {
             decrementSpeed(amount);
