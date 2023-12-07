@@ -14,7 +14,7 @@ public class CarView extends JFrame implements SignalObserver{
     CarController carC;
 
     DrawPanel drawPanel;
-    updatePanel updateState = new updatePanel();
+
     JPanel controlPanel = new JPanel();
 
     JPanel gasPanel = new JPanel();
