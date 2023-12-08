@@ -26,12 +26,15 @@ public class CarController {
     }
 
     public ArrayList<Vehicles> getVehicles() {
+
         return Vehicles.cars;
     }
 
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-
+                if (Vehicles.cars.isEmpty()) {
+                    frame.drawPanel.repaint();
+                }
             for (Vehicles car : Vehicles.cars) {
                 car.move();
                 source.notifyObsevers(car.getPosition(),car);
@@ -114,24 +117,32 @@ public class CarController {
         }
     }
     void addCar(){
-        Random randomInt = new Random();
-        int pickedCar = randomInt.nextInt(3);
 
-        VehicleFactory scania= new ScaniaFactory();
-        VehicleFactory volvo= new Volvo240Factory();
-        VehicleFactory saab95= new Saab95Factory();
+       Random random = new Random();
+       int pickedCar = random.nextInt(3);
         if (Vehicles.cars.size() < vehicleLimit) {
         switch (pickedCar) {
             case 0:
-                scania.createVehicles();
+                new Scania(); break;
             case 1:
-                saab95.createVehicles();
+                new Saab95(); break;
             case 2:
-                volvo.createVehicles();
+                new Volvo240(); break;
         }}
 
     }
+    void removeCar() {
+        Random random1 = new Random();
 
+
+
+        if (Vehicles.cars.size() <= 1) {
+            Vehicles.cars.clear();
+        }
+        else {
+            int pickCarToRemove = random1.nextInt(Vehicles.cars.size());
+        Vehicles.cars.remove(pickCarToRemove);}
+    }
 
 
     public ActionListener createGasListener(){
@@ -168,7 +179,7 @@ public class CarController {
 
     public ActionListener createAddCarButton(){return e -> addCar();}
 
-    //public ActionListener createRemoveCarButton(){return e -> removeCar();}
+    public ActionListener createRemoveCarButton(){return e -> removeCar();}
 
 
 

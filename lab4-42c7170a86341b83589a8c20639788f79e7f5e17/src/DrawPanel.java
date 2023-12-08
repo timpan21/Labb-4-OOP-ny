@@ -1,18 +1,14 @@
-    import sun.misc.Signal;
-
-    import java.awt.*;
+import java.awt.*;
     import java.awt.image.BufferedImage;
-    import java.io.File;
-    import java.io.IOException;
+import java.io.IOException;
     import java.util.*;
     import javax.imageio.ImageIO;
-    import javax.imageio.stream.ImageInputStream;
-    import javax.swing.*;
+import javax.swing.*;
 
     // This panel represent the animated part of the view with the car images.
 
     public class DrawPanel extends JPanel{
-        private CarController carController;
+
 
         // Just a single image, TODO: Generalize
 
@@ -28,13 +24,13 @@
 
 
 
-        private final Map<Class<? extends Vehicles>, BufferedImage> test = new HashMap<>();
+        private final Map<Class<? extends Vehicles>, BufferedImage> Hashmap1 = new HashMap<>();
 
 
 
         // Initializes the panel and reads the images
-        public DrawPanel(int x, int y, CarController carController) {
-            this.carController = carController;
+        public DrawPanel(int x, int y) {
+
 
 
 
@@ -63,7 +59,7 @@
 
         private BufferedImage getImageForVehicle(Vehicles car) {
 
-            return test.get(car.getClass());
+            return Hashmap1.get(car.getClass());
         }
 
 
@@ -72,14 +68,14 @@
 
         @Override
         protected void paintComponent(Graphics g) {
-            test.put(Saab95.class, saabImage);
-            test.put(Volvo240.class, volvoImage);
-            test.put(Scania.class, scaniaImage);
+            Hashmap1.put(Saab95.class, saabImage);
+            Hashmap1.put(Volvo240.class, volvoImage);
+            Hashmap1.put(Scania.class, scaniaImage);
             super.paintComponent(g);
-            int deltaY = 100; // Vertical offset between cars
+            int deltaY = 55; // Vertical offset between cars
             int yOffset = 0;  // Starting offset
 
-            for (Vehicles car : carController.getVehicles()) {
+            for (Vehicles car : Vehicles.cars) {
 
                 BufferedImage image = getImageForVehicle(car);
 

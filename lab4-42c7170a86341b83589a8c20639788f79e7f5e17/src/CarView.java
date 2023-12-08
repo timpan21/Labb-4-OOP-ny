@@ -47,7 +47,7 @@ public class CarView extends JFrame implements SignalObserver{
         this.setTitle(title);
         this.setPreferredSize(new Dimension(X,Y));
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
-        this.drawPanel = new DrawPanel(X, Y -240, carC);
+        this.drawPanel = new DrawPanel(X, Y -240);
         this.add(drawPanel);
 
         SpinnerModel spinnerModel =
@@ -68,7 +68,7 @@ public class CarView extends JFrame implements SignalObserver{
 
         this.add(gasPanel);
 
-        controlPanel.setLayout(new GridLayout(2,4));
+        controlPanel.setLayout(new GridLayout(3,4));
 
         controlPanel.add(gasButton, 0);
         controlPanel.add(turboOnButton, 1);
@@ -76,30 +76,31 @@ public class CarView extends JFrame implements SignalObserver{
         controlPanel.add(brakeButton, 3);
         controlPanel.add(turboOffButton, 4);
         controlPanel.add(lowerBedButton, 5);
-        controlPanel.setPreferredSize(new Dimension((X/2)+4, 200));
+        controlPanel.setPreferredSize(new Dimension((X/3)+4, 200));
+
         this.add(controlPanel);
         controlPanel.setBackground(Color.CYAN);
 
 
         startButton.setBackground(Color.blue);
         startButton.setForeground(Color.green);
-        startButton.setPreferredSize(new Dimension(X/5-15,200));
+        startButton.setPreferredSize(new Dimension(X/7-15,200));
         this.add(startButton);
 
 
         stopButton.setBackground(Color.red);
         stopButton.setForeground(Color.black);
-        stopButton.setPreferredSize(new Dimension(X/5-15,200));
+        stopButton.setPreferredSize(new Dimension(X/7-15,200));
         this.add(stopButton);
 
         addCarButton.setBackground(Color.orange);
-        addCarButton.setBackground(Color.black);
-        addCarButton.setPreferredSize(new Dimension(X/5-15,200));
+
+        addCarButton.setPreferredSize(new Dimension(X/7-15,200));
         this.add(addCarButton);
 
         removeCarButton.setBackground(Color.red);
-        removeCarButton.setBackground(Color.black);
-        removeCarButton.setPreferredSize(new Dimension(X/5-15,200));
+
+        removeCarButton.setPreferredSize(new Dimension(X/7-15,200));
         this.add(removeCarButton);
 
         startButton.addActionListener(carC.createStartListener());
@@ -111,7 +112,7 @@ public class CarView extends JFrame implements SignalObserver{
         lowerBedButton.addActionListener(carC.createLowerBedListener());
         brakeButton.addActionListener(carC.createBrakeListener());
         addCarButton.addActionListener(carC.createAddCarButton());
-        //removeCarButton.addActionListener(carC.createRemoveCarButton());
+        removeCarButton.addActionListener(carC.createRemoveCarButton());
 
 
         // Make the frame pack all it's components by respecting the sizes if possible.
@@ -130,6 +131,7 @@ public class CarView extends JFrame implements SignalObserver{
 
     @Override
     public void actOnSignal(Point position, Vehicles car) {
+
         drawPanel.updatepanel.moveCar(position,car);
         drawPanel.repaint();
 
