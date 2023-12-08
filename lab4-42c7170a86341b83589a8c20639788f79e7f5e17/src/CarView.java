@@ -100,7 +100,7 @@ public class CarView extends JFrame implements SignalObserver{
 
         removeCarButton.setBackground(Color.red);
 
-        removeCarButton.setPreferredSize(new Dimension(X/7-15,200));
+        removeCarButton.setPreferredSize(new Dimension(X/7-10,200));
         this.add(removeCarButton);
 
         startButton.addActionListener(carC.createStartListener());
