@@ -111,7 +111,7 @@ public class CarView extends JFrame implements SignalObserver{
         lowerBedButton.addActionListener(carC.createLowerBedListener());
         brakeButton.addActionListener(carC.createBrakeListener());
         addCarButton.addActionListener(carC.createAddCarButton());
-        removeCarButton.addActionListener(carC.createRemoveCarButton());
+        //removeCarButton.addActionListener(carC.createRemoveCarButton());
 
 
         // Make the frame pack all it's components by respecting the sizes if possible.

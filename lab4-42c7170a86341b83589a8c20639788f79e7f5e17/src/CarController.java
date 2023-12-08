@@ -3,12 +3,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class CarController {
 
     private final int delay = 50;
 
-    private Timer timer = new Timer(delay, new TimerListener());
+    Timer timer = new Timer(delay, new TimerListener());
 
     private final int vehicleLimit = 10;
 
@@ -113,17 +114,25 @@ public class CarController {
         }
     }
     void addCar(){
-        if (vehicles.size() < vehicleLimit) {
-            Vehicles createCar = Vehicles.createNewCar(car);
-            vehicles.add(newCar);
-        }
+        Random randomInt = new Random();
+        int pickedCar = randomInt.nextInt(3);
+
+        VehicleFactory scania= new ScaniaFactory();
+        VehicleFactory volvo= new Volvo240Factory();
+        VehicleFactory saab95= new Saab95Factory();
+        if (Vehicles.cars.size() < vehicleLimit) {
+        switch (pickedCar) {
+            case 0:
+                scania.createVehicles();
+            case 1:
+                saab95.createVehicles();
+            case 2:
+                volvo.createVehicles();
+        }}
+
     }
 
-    void removeCar(){
-        if (!vehicles.isEmpty()){
-            vehicles.remove(vehicles.size() - -1);
-        }
-    }
+
 
     public ActionListener createGasListener(){
         return e -> gas (frame.gasAmount);
@@ -159,18 +168,8 @@ public class CarController {
 
     public ActionListener createAddCarButton(){return e -> addCar();}
 
-    public ActionListener createRemoveCarButton(){return e -> removeCar();}
+    //public ActionListener createRemoveCarButton(){return e -> removeCar();}
 
-    public static void main(String[] args) {
-        CarController cc = new CarController();
 
-        cc.vehicles.add(new Volvo240());
-        cc.vehicles.add(new Saab95());
-        cc.vehicles.add(new Scania());
-
-        // Start the timer
-        cc.timer.start();
-
-    }
 
 }
