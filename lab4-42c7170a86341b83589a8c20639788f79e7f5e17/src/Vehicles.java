@@ -45,12 +45,35 @@ public abstract class Vehicles implements Movable{
         double newY = position.getY() + Math.sin(Math.toRadians(direction)) * getCurrentSpeed();
         position.setLocation(newX, newY);
 
+        int x = (int) Math.round(getPosition().getX());
+        int y = (int) Math.round(getPosition().getY());
+        //if (x <= frame.getSize().width)
 
+        if (ifAboutToHitWall(this, newX)) {
+            if (newX >= 684) {
+                setPosition(new Point(684,y));
+                newX = 684;
 
+            }
 
+            else {setPosition(new Point(0,y));
+                newX = 0;
+            }
+            stopEngine();
+            turnLeft();
+            turnLeft();
+            startEngine();
+
+        }
 
     }
 
+
+
+
+    private static boolean ifAboutToHitWall(Vehicles car, double x) {
+        return (x <= 0 && (car.getDirection() == 180 || car.getDirection() == -180)) || (x >= 684 && (int) car.getDirection() == 0);
+    }
     public int getLength(){return length;}
 
     public int getNrDoors(){
