@@ -21,8 +21,9 @@ public class CarController {
 
     public CarController() {
         this.source = new EventSource();
-        this.frame = new CarView("CarSim 1.0", this);
+        this.frame = new CarView("CarSim 1.0");
         this.source.addObserver(frame);
+        createAllListeners();
     }
 
     public ArrayList<Vehicles> getVehicles() {
@@ -126,6 +127,7 @@ public class CarController {
         return e -> gas(frame.gasAmount);
     }
 
+
     public ActionListener createStartListener(){
         return e -> startEngine();
     }
@@ -154,12 +156,23 @@ public class CarController {
         return e -> brake(frame.gasAmount);
     }
 
-    public ActionListener createAddCarButton(){return e -> addCar();}
+    public ActionListener createAddCarListener(){return e -> addCar();}
 
-    public ActionListener createRemoveCarButton(){return e -> removeCar();}
-
-
+    public ActionListener createRemoveCarListener(){return e -> removeCar();}
 
 
+
+    void createAllListeners() {
+        frame.addGasListener(this);
+        frame.addStopListener(this);
+        frame.addStartListener(this);
+        frame.addBrakeListener(this);
+        frame.addAddCarListener(this);
+        frame.addRemoveCarListener(this);
+        frame.addTurboOffListener(this);
+        frame.addTurboOnListener(this);
+        frame.addliftBedListener(this);
+        frame.addlowerBedListener(this);
+    }
 
 }
