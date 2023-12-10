@@ -32,41 +32,18 @@ public class CarController {
 
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-                if (Vehicles.cars.isEmpty()) {
-                    frame.drawPanel.repaint();
-                }
+            if (Vehicles.cars.isEmpty()) {
+                frame.drawPanel.repaint();
+            }
             for (Vehicles car : Vehicles.cars) {
                 car.move();
-                source.notifyObsevers(car.getPosition(),car);
-                int x = (int) Math.round(car.getPosition().getX());
-                int y = (int) Math.round(car.getPosition().getY());
-                //if (x <= frame.getSize().width)
+                source.notifyObsevers(car.getPosition(), car);
 
-                if (ifAboutToHitWall(car, x)) {
-                    if (x >= 684) {
-                        car.setPosition(new Point(684,y));
-                        x = 684;
-
-                    }
-
-                    else {car.setPosition(new Point(0,y));
-                        x = 0;
-                    }
-                    car.stopEngine();
-                    car.turnLeft();
-                    car.turnLeft();
-                    car.startEngine();
-
-                }
 
             }
 
-        }
 
-        private static boolean ifAboutToHitWall(Vehicles car, int x) {
-            return (x <= 0 && (car.getDirection() == 180 || car.getDirection() == -180)) || (x >= 684 && (int) car.getDirection() == 0);
         }
-
 
     }
 
@@ -146,7 +123,7 @@ public class CarController {
 
 
     public ActionListener createGasListener(){
-        return e -> gas (frame.gasAmount);
+        return e -> gas(frame.gasAmount);
     }
 
     public ActionListener createStartListener(){
@@ -180,6 +157,8 @@ public class CarController {
     public ActionListener createAddCarButton(){return e -> addCar();}
 
     public ActionListener createRemoveCarButton(){return e -> removeCar();}
+
+
 
 
 

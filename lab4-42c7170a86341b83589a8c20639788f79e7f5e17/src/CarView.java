@@ -129,6 +129,7 @@ public class CarView extends JFrame implements SignalObserver{
     }
 
 
+
     @Override
     public void actOnSignal(Point position, Vehicles car) {
 
