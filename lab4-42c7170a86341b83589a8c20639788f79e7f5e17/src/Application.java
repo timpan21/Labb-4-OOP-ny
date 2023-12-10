@@ -1,3 +1,5 @@
+import javax.swing.Timer;
+
 public class Application {
 
     public static void main(String[] args) {
@@ -8,11 +10,11 @@ public class Application {
         scaniafactory.createVehicles();
         volvo240factory.createVehicles();
         saabfactory.createVehicles();
-
-
+        int delay = 50;
+        Timer timer = new Timer(delay, cc.createTimerListener());
 
         // Start the timer
-        cc.timer.start();
+        timer.start();
 
     }
 }

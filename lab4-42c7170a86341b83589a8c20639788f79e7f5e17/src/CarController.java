@@ -7,16 +7,16 @@ import java.util.Random;
 
 public class CarController {
 
-    private final int delay = 50;
-
-    Timer timer = new Timer(delay, new TimerListener());
-
     private final int vehicleLimit = 10;
 
     CarView frame;
 
 
     EventSource source;
+
+    public ActionListener createTimerListener(){
+        return new TimerListener();
+    }
 
 
     public CarController() {
