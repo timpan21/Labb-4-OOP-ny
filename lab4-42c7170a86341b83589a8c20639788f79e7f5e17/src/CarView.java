@@ -11,10 +11,10 @@ public class CarView extends JFrame implements SignalObserver{
     private static final int Y = 800;
 
     // The controller member
-    CarController carC;
+
 
     DrawPanel drawPanel;
-    updatePanel updateState = new updatePanel();
+
     JPanel controlPanel = new JPanel();
 
     JPanel gasPanel = new JPanel();
@@ -37,8 +37,8 @@ public class CarView extends JFrame implements SignalObserver{
 
 
     // Constructor
-    public CarView(String framename, CarController cc){
-        this.carC = cc;
+    public CarView(String framename){
+
         initComponents(framename);
     }
 
@@ -103,16 +103,10 @@ public class CarView extends JFrame implements SignalObserver{
         removeCarButton.setPreferredSize(new Dimension(X/7-10,200));
         this.add(removeCarButton);
 
-        startButton.addActionListener(carC.createStartListener());
-        gasButton.addActionListener(carC.createGasListener());
-        stopButton.addActionListener(carC.createStopListener());
-        turboOffButton.addActionListener(carC.createTurboOffListener());
-        turboOnButton.addActionListener(carC.createTurboOnListener());
-        liftBedButton.addActionListener(carC.createLiftBedListener());
-        lowerBedButton.addActionListener(carC.createLowerBedListener());
-        brakeButton.addActionListener(carC.createBrakeListener());
-        addCarButton.addActionListener(carC.createAddCarButton());
-        removeCarButton.addActionListener(carC.createRemoveCarButton());
+
+
+
+
 
 
         // Make the frame pack all it's components by respecting the sizes if possible.
@@ -129,6 +123,41 @@ public class CarView extends JFrame implements SignalObserver{
     }
 
 
+
+
+    void addGasListener(CarController controller){
+        gasButton.addActionListener(controller.createGasListener());
+    }
+    void addStopListener(CarController controller) {
+        stopButton.addActionListener(controller.createStopListener());
+    }
+
+    void addStartListener(CarController controller) {
+        startButton.addActionListener(controller.createStartListener());
+
+    }
+    void addTurboOffListener(CarController controller) {
+        turboOffButton.addActionListener(controller.createTurboOffListener());
+    }
+    void addTurboOnListener(CarController controller) {
+        turboOnButton.addActionListener(controller.createTurboOnListener());
+    }
+    void addliftBedListener(CarController controller) {
+        liftBedButton.addActionListener(controller.createLiftBedListener());
+
+    }
+    void addlowerBedListener(CarController controller) {
+        lowerBedButton.addActionListener(controller.createLowerBedListener());
+    }
+    void addBrakeListener(CarController controller) {
+        brakeButton.addActionListener(controller.createBrakeListener());
+    }
+    void addAddCarListener(CarController controller) {
+        addCarButton.addActionListener(controller.createAddCarListener());
+    }
+    void addRemoveCarListener(CarController controller) {
+        removeCarButton.addActionListener(controller.createRemoveCarListener());
+    }
 
     @Override
     public void actOnSignal(Point position, Vehicles car) {
