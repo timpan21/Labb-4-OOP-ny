@@ -8,13 +8,16 @@ import java.util.Random;
 public class CarController {
 
 
-
     private final int vehicleLimit = 10;
 
     CarView frame;
 
 
     EventSource source;
+
+    public ActionListener createTimerListener(){
+        return new TimerListener();
+    }
 
 
     public CarController(EventSource source, CarView frame) {
