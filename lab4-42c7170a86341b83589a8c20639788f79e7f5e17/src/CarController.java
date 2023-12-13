@@ -15,9 +15,6 @@ public class CarController {
 
     EventSource source;
 
-    public ActionListener createTimerListener(){
-        return new TimerListener();
-    }
 
 
     public CarController(EventSource source, CarView frame) {

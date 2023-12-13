@@ -15,7 +15,7 @@ public class Application {
         volvo240factory.createVehicles();
         saabfactory.createVehicles();
         int delay = 50;
-        Timer timer = new Timer(delay, cc.createTimerListener());
+
 
 
         // Start the timer
