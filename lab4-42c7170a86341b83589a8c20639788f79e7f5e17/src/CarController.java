@@ -7,9 +7,7 @@ import java.util.Random;
 
 public class CarController {
 
-    private final int delay = 50;
 
-    Timer timer = new Timer(delay, new TimerListener());
 
     private final int vehicleLimit = 10;
 
@@ -19,9 +17,9 @@ public class CarController {
     EventSource source;
 
 
-    public CarController() {
-        this.source = new EventSource();
-        this.frame = new CarView("CarSim 1.0");
+    public CarController(EventSource source, CarView frame) {
+        this.source = source;
+        this.frame = frame;
         this.source.addObserver(frame);
         createAllListeners();
     }
@@ -31,22 +29,7 @@ public class CarController {
         return Vehicles.cars;
     }
 
-    private class TimerListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            if (Vehicles.cars.isEmpty()) {
-                frame.drawPanel.repaint();
-            }
-            for (Vehicles car : Vehicles.cars) {
-                car.move();
-                source.notifyObsevers(car.getPosition(), car);
 
-
-            }
-
-
-        }
-
-    }
 
     // Calls the gas method for each car once
     void gas(int amount) {
@@ -116,6 +99,7 @@ public class CarController {
 
         if (Vehicles.cars.size() <= 1) {
             Vehicles.cars.clear();
+            frame.repaint();
         }
         else {
             int pickCarToRemove = random1.nextInt(Vehicles.cars.size());
@@ -129,7 +113,9 @@ public class CarController {
 
 
     public ActionListener createStartListener(){
+
         return e -> startEngine();
+
     }
 
     public ActionListener createStopListener(){

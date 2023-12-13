@@ -1,7 +1,10 @@
 public class Application {
 
     public static void main(String[] args) {
-        CarController cc = new CarController();
+        EventSource source = new EventSource();
+        CarView carview = new CarView("CarSim 1.0");
+        CarController cc = new CarController(source, carview);
+        Listener listener = new Listener(source);
 
         VehicleFactory saabfactory = new Saab95Factory();
         VehicleFactory volvo240factory = new Volvo240Factory();
@@ -14,7 +17,7 @@ public class Application {
 
 
         // Start the timer
-        cc.timer.start();
+        listener.timer.start();
 
     }
 }
